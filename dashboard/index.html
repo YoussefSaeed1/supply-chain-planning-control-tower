@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="app.css">
+<div class="sc" id="sc">
+  <header class="sc-head">
+    <div>
+      <h1 class="sc-title" id="sc-title">Supply Chain Planning | MRP &amp; MPS Control Tower</h1>
+      <p class="sc-sub" id="sc-take">Loading planning model…</p>
+    </div>
+    <span class="sc-disc" id="sc-disc">Synthetic data used for demonstration purposes only.</span>
+  </header>
+  <div class="sc-flow" aria-label="Planning flow"><span>Demand</span><i>→</i><span>MPS</span><i>→</i><span>BOM explosion</span><i>→</i><span>Gross requirements</span><i>→</i><span>Inventory &amp; receipts</span><i>→</i><span>Net requirements</span><i>→</i><span>Shortages</span><i>→</i><span>Procurement</span><i>→</i><span>Capacity check</span><i>→</i><span>Production readiness</span></div>
+  <nav class="sc-nav" id="sc-nav" role="tablist" aria-label="Pages"></nav>
+  <div class="sc-filters" id="sc-filters"></div>
+  <div class="sc-fbar" id="sc-fbar"></div>
+  <div id="sc-loading" class="sc-loading dash-skeleton" style="min-height:160px"></div>
+  <section id="pg-overview" class="sc-page" hidden data-source="demand mps mrp recs pos capacity suppliers materials products weeks"></section>
+  <section id="pg-mps" class="sc-page" hidden data-source="demand mps products weeks"></section>
+  <section id="pg-mrp" class="sc-page" hidden data-source="mrp mps bom materials products weeks"></section>
+  <section id="pg-short" class="sc-page" hidden data-source="mrp mps materials suppliers bom products weeks"></section>
+  <section id="pg-proc" class="sc-page" hidden data-source="recs pos materials suppliers weeks"></section>
+  <section id="pg-inv" class="sc-page" hidden data-source="mrp materials weeks"></section>
+  <section id="pg-cap" class="sc-page" hidden data-source="capacity mps products lines weeks"></section>
+  <section id="pg-sup" class="sc-page" hidden data-source="suppliers pos materials recs"></section>
+  <section id="pg-about" class="sc-page" hidden></section>
+  <div class="sc-tip" id="sc-tip"></div>
+  <footer class="sc-foot">Synthetic data used for demonstration purposes only. Fictional company “Delta Consumer Products”; all figures in EGP. Planning date 14 Oct 2026, horizon 36 weeks (2026-W42 to 2027-W25).</footer>
+</div>
+<script src="core.js"></script>
+<script src="charts.js"></script>
+<script src="pages1.js"></script>
+<script src="pages2.js"></script>
+<script src="pages3.js"></script>
+<script src="boot.js"></script>

@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><style>
+:root{--color-fg:#e8eaed;--color-fg-muted:#9aa3ad;--color-bg:#0e1114;--color-panel:#151a1f;--color-border-line:#2a313a;--color-ok:#2f8f63;--color-warn:#d89a2b;--color-bad:#c8433a;--font-anthropic-sans:Inter,system-ui,sans-serif;--font-anthropic-serif:Georgia,serif;--cds-radius:10px;--cds-surface-popover:#1b2128;--cds-shadow-popover:0 8px 24px rgba(0,0,0,.5);--cds-dur-slow:.3s;--cds-border:1px solid #2a313a}
+html,body{margin:0;background:#0e1114;color:#e8eaed;font-family:Inter,system-ui,sans-serif}#dash-root{padding:20px 24px}</style></head><body><div id="dash-root"><link rel="stylesheet" href="../dashboard/app.css">
+<div class="sc" id="sc">
+  <header class="sc-head">
+    <div>
+      <h1 class="sc-title" id="sc-title">Supply Chain Planning | MRP &amp; MPS Control Tower</h1>
+      <p class="sc-sub" id="sc-take">Loading planning model…</p>
+    </div>
+    <span class="sc-disc" id="sc-disc">Synthetic data used for demonstration purposes only.</span>
+  </header>
+  <div class="sc-flow" aria-label="Planning flow"><span>Demand</span><i>→</i><span>MPS</span><i>→</i><span>BOM explosion</span><i>→</i><span>Gross requirements</span><i>→</i><span>Inventory &amp; receipts</span><i>→</i><span>Net requirements</span><i>→</i><span>Shortages</span><i>→</i><span>Procurement</span><i>→</i><span>Capacity check</span><i>→</i><span>Production readiness</span></div>
+  <nav class="sc-nav" id="sc-nav" role="tablist" aria-label="Pages"></nav>
+  <div class="sc-filters" id="sc-filters"></div>
+  <div class="sc-fbar" id="sc-fbar"></div>
+  <div id="sc-loading" class="sc-loading dash-skeleton" style="min-height:160px"></div>
+  <section id="pg-overview" class="sc-page" hidden data-source="demand mps mrp recs pos capacity suppliers materials products weeks"></section>
+  <section id="pg-mps" class="sc-page" hidden data-source="demand mps products weeks"></section>
+  <section id="pg-mrp" class="sc-page" hidden data-source="mrp mps bom materials products weeks"></section>
+  <section id="pg-short" class="sc-page" hidden data-source="mrp mps materials suppliers bom products weeks"></section>
+  <section id="pg-proc" class="sc-page" hidden data-source="recs pos materials suppliers weeks"></section>
+  <section id="pg-inv" class="sc-page" hidden data-source="mrp materials weeks"></section>
+  <section id="pg-cap" class="sc-page" hidden data-source="capacity mps products lines weeks"></section>
+  <section id="pg-sup" class="sc-page" hidden data-source="suppliers pos materials recs"></section>
+  <section id="pg-about" class="sc-page" hidden></section>
+  <div class="sc-tip" id="sc-tip"></div>
+  <footer class="sc-foot">Synthetic data used for demonstration purposes only. Fictional company “Delta Consumer Products”; all figures in EGP. Planning date 14 Oct 2026, horizon 36 weeks (2026-W42 to 2027-W25).</footer>
+</div>
+
+
+
+
+
+
+</div><script>
+window.__params={};window.__cbs=[];
+const IDS=['products','materials','bom','suppliers','demand','mps','mrp','pos','recs','capacity','weeks','lines'];
+Promise.all(IDS.map(i=>fetch('../data/'+i+'.json').then(r=>r.json()))).then(arr=>{
+ const data={};IDS.forEach((i,k)=>data[i]=arr[k]);
+ window.dash={data:id=>({status:'ok',data:data[id]}),params:()=>window.__params,setParams:o=>{Object.assign(window.__params,o);window.__cbs.forEach(c=>c())},resetParams:()=>{window.__params={}},onData:c=>{window.__cbs.push(c);c()},setLink:()=>{},colors:[]};
+ const load=s=>new Promise(r=>{const e=document.createElement('script');e.src='../dashboard/'+s+'.js';e.onload=r;document.body.append(e)});
+ (async()=>{for(const s of ['core','charts','pages1','pages2','pages3','boot'])await load(s);window.__ready=true})();
+});
+</script></body></html>
