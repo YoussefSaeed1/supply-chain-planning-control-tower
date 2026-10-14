@@ -4,7 +4,7 @@
 
 An interactive control tower that connects demand, Master Production Scheduling (MPS), BOM explosion, Material Requirements Planning (MRP), inventory, procurement, supplier risk and production capacity, to identify material shortages and improve production readiness.
 
-**[View the interactive dashboard](https://claude.ai/artifact/32SBwQm7wDy8PcUREVxnvm#overview)**
+**[View the interactive dashboard](https://youssefsaeed-portfolio.vercel.app/demos/supply-chain/)**
 
 > **Synthetic data used for demonstration purposes only.** This is a portfolio project about a fictional manufacturer ("Delta Consumer Products"). It uses no data from any real company and was not built for a real employer or production environment.
 
